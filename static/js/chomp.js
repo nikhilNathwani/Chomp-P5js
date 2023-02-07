@@ -58,11 +58,11 @@ function mouseClicked() {
 // Hides the chocolate at position (x,y) i.e. row y & column x
 // And hides all chocolates beneath (x,y) and to the right.
 function chomp(x,y) {
-    for(let row=y; row<numRows; row++) {
-        if(grid[row] == 0) {
+    for(let row=y; row<board.length; row++) {
+        if(board[row] == 0) {
             continue;
         }
-        for(let column=x; column<numColumns; column++) {
+        for(let column=x; column<board[y]; column++) {
             grid[row][column].hide();
         }
     }

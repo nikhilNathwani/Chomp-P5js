@@ -37,25 +37,26 @@ function draw() {
     x= floor(mouseX/chocLength);
     y= floor(mouseY/chocLength);
     if(x>=0 && x<numColumns && y>=0 && y<numRows ) {
-        console.log("Hovered",x,y);
+        // console.log("hovered");
         chompPreview(x,y);
     }
     else {
-        console.log("Unhovered");
+        // console.log("unhovered");
         resetChocolates();
     }
 }
 
+// If mouse-click happens on top of a chocolate, perform the chomp() action
 function mouseClicked() {
     x= floor(mouseX/chocLength)
     y= floor(mouseY/chocLength)
-    console.log("Clicked",x,y);
     if(x<numColumns & y<numRows) {
         chomp(x,y);  
     }
 }
 
-
+// Hides the chocolate at position (x,y) i.e. row y & column x
+// And hides all chocolates beneath (x,y) and to the right.
 function chomp(x,y) {
     for(let row=y; row<numRows; row++) {
         if(grid[row] == 0) {
@@ -67,6 +68,9 @@ function chomp(x,y) {
     }
 }
 
+// Hover UI: highlights hovered cell in warningColorHeavy, and all
+// cells beneath/to-the-right in warningColorLight, so that you can 
+// see which cells you'd chomp if you clicked your mouse.
 function chompPreview(x,y) {
     resetChocolates();
     for(let row=y; row<board.length; row++) {
@@ -75,7 +79,6 @@ function chompPreview(x,y) {
         }
         for(let column=x; column<board[y]; column++) {
             if(row==y && column==x) {
-                console.log("WH", row,column)
                 grid[row][column].warningHeavy()
             }
             else {
@@ -85,6 +88,8 @@ function chompPreview(x,y) {
     }
 }
 
+// Reset chocolates to default state. E.g. used after a cell was 
+// hovered (so it adopted hover style) but is no longer hovered.
 function resetChocolates() {
     for(let row=0; row<board.length; row++) {
         for(let column=0; column<board[row]; column++) {

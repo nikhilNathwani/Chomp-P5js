@@ -36,7 +36,7 @@ function draw() {
     //Get cursor position to trigger hover UI
     x= floor(mouseX/chocLength);
     y= floor(mouseY/chocLength);
-    if(x<numColumns && y<numRows && x>=0 && y>=0) {
+    if(mouseInChompGrid(x,y)) {
         // console.log("hovered");
         chompHoverPreview(x,y);
     }
@@ -98,4 +98,8 @@ function resetChocolates() {
             grid[row][column].resetColor();
         }
     }
+}
+
+function mouseInChompGrid(x,y) {
+    return x<numColumns && y<numRows && x>=0 && y>=0;
 }

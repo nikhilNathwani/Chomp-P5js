@@ -7,8 +7,8 @@ def createBoard(width, height):
     global numColumns, numRows, board
     numColumns= width
     numRows= height
-    board= [numRows]*numColumns
-    print("Creating",numColumns,"x",numRows,"board!")
+    board= [numColumns]*numRows
+    print("Creating board with",numRows,"rows and",numColumns,"columns!")
     printBoard()
 
 
@@ -27,9 +27,9 @@ def printBoard():
 
     #Set chomped cells to "X" ("X" means "chomped")
     for x in range(numRows):
-        for y in range(numColumns):
-            if x >= board[y]:
-                board_2d[x][y]= "X"
+        rowLen= board[x]
+        for y in range(rowLen,numColumns):
+            board_2d[x][y]= "X"
 
     #Print board_2d with row/column labels on the x and y axes
     columnHeaderString= ""
@@ -49,8 +49,8 @@ def chomp(x,y):
     print("Chomping (",x,",",y,")!")
     #Add logic to throw error for x>columns or y>rows
     global board
-    for column in range(x,numColumns):
-        board[column]= y
+    for row in range(y,numRows):
+        board[row]= x
     printBoard()
 
 if __name__ == '__main__':

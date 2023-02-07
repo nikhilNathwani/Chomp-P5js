@@ -28,6 +28,8 @@ function setup() {
   
 function draw() {
     background(backgroundColor);
+    x= floor(mouseX/chocLength);
+    y= floor(mouseY/chocLength);
 
     for(let i=0; i<board.length; i++) {
         for(let j=0; j<board[i]; j++) {
@@ -39,8 +41,13 @@ function draw() {
 function mouseClicked() {
    x= floor(mouseX/chocLength)
    y= floor(mouseY/chocLength)
-   console.log("Hi",x,y);
+   console.log("Clicked",x,y);
    chomp(x,y);
+}
+
+function mouseHovered() {
+    console.log("Hovered",x,y);
+    chompPreview(x,y);
 }
 
 function chomp(x,y) {
@@ -50,6 +57,22 @@ function chomp(x,y) {
         }
         for(let column=x; column<numColumns; column++) {
             grid[row][column].hide();
+        }
+    }
+}
+
+function chompPreview(x,y) {
+    for(let row=y; row<numRows; row++) {
+        if(grid[row] == 0) {
+            continue;
+        }
+        for(let column=x; column<numColumns; column++) {
+            if(row==y && column==x) {
+                grid[row][column].warningHeavy()
+            }
+            else {
+                grid[row][column].warningLight();
+            }
         }
     }
 }

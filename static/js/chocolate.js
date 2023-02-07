@@ -1,5 +1,8 @@
 let defaultFillColor= '#0000FF';
 let defaultBorderColor= '#00FF00';
+let warningHeavyColor= '#FF0000';
+let warningLightColor= '#770000';
+
 
 function Chocolate(x, y, length) {
     //Location & sizing
@@ -21,5 +24,18 @@ function Chocolate(x, y, length) {
         this.length= 0;
         this.fillColor= backgroundColor;
         this.borderColor= backgroundColor;
+    }
+
+    //Called when chocolate is hovered on
+    //Changes color to 'warningHeavy'
+    this.warningHeavy= function() {
+        this.fillColor= warningHeavyColor;
+    }
+
+    //Called when different chocolate is hovered on,
+    //but it would result in this chocolate getting chomped.
+    //Changes color to 'warningLight'
+    this.warningLight= function() {
+        this.fillColor= warningLightColor;
     }
 }

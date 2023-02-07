@@ -27,28 +27,31 @@ function setup() {
 }
   
 function draw() {
+    //Draw canvas and remaining chocolates
     background(backgroundColor);
-    x= floor(mouseX/chocLength);
-    y= floor(mouseY/chocLength);
-
     for(let i=0; i<board.length; i++) {
         for(let j=0; j<board[i]; j++) {
             grid[i][j].show();
         }
     }
+
+    //Get cursor position to trigger hover UI
+    x= floor(mouseX/chocLength);
+    y= floor(mouseY/chocLength);
+    if(x<chocLength*numColumns & y<chocLength*numRows) {
+        chompPreview(x,y);
+    }
 }
 
 function mouseClicked() {
-   x= floor(mouseX/chocLength)
-   y= floor(mouseY/chocLength)
-   console.log("Clicked",x,y);
-   chomp(x,y);
+    x= floor(mouseX/chocLength)
+    y= floor(mouseY/chocLength)
+    console.log("Clicked",x,y);
+    if(x<chocLength*numColumns & y<chocLength*numRows) {
+        chomp(x,y);  
+    }
 }
 
-function mouseHovered() {
-    console.log("Hovered",x,y);
-    chompPreview(x,y);
-}
 
 function chomp(x,y) {
     for(let row=y; row<numRows; row++) {

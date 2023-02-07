@@ -1,6 +1,7 @@
 //Canvas vars
 let width= 1200;
 let height= 600;
+let backgroundColor= '#000'; //black
 
 //Chocolate vars
 let chocLength= 80;
@@ -26,9 +27,8 @@ function setup() {
 }
   
 function draw() {
-    background(0,0,0);
-    stroke(0,255,0);
- 
+    background(backgroundColor);
+
     for(let i=0; i<board.length; i++) {
         for(let j=0; j<board[i]; j++) {
             grid[i][j].show();

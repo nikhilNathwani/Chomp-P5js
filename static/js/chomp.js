@@ -36,9 +36,9 @@ function draw() {
     //Get cursor position to trigger hover UI
     x= floor(mouseX/chocLength);
     y= floor(mouseY/chocLength);
-    if(x>=0 && x<numColumns && y>=0 && y<numRows ) {
+    if(x<numColumns && y<numRows && x>=0 && y>=0) {
         // console.log("hovered");
-        chompPreview(x,y);
+        chompHoverPreview(x,y);
     }
     else {
         // console.log("unhovered");
@@ -71,18 +71,20 @@ function chomp(x,y) {
 // Hover UI: highlights hovered cell in warningColorHeavy, and all
 // cells beneath/to-the-right in warningColorLight, so that you can 
 // see which cells you'd chomp if you clicked your mouse.
-function chompPreview(x,y) {
-    resetChocolates();
-    for(let row=y; row<board.length; row++) {
+function chompHoverPreview(x,y) {
+    for(let row=0; row<board.length; row++) {
         if(board[row] == 0) {
             continue;
         }
-        for(let column=x; column<board[y]; column++) {
+        for(let column=0; column<board[y]; column++) {
             if(row==y && column==x) {
                 grid[row][column].warningHeavy()
             }
-            else {
+            else if (row>=y && column>=x) {
                 grid[row][column].warningLight();
+            }
+            else {
+                grid[row][column].resetColor();
             }
         }
     }

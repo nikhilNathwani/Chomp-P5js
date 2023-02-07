@@ -38,4 +38,9 @@ function Chocolate(x, y, length) {
     this.warningLight= function() {
         this.fillColor= warningLightColor;
     }
+
+    //Called when cells are unhovered, to undo the hover UI
+    this.resetColor= function() {
+        this.fillColor= defaultFillColor;
+    }
 }
